@@ -20,162 +20,7 @@
 <meta name="csrf-token" content="zY-BYflwagigeMMT-c7mchqtY99ciFuv-hK71qkorwP1M2IE4I2K5UdKpmu18zp7mWAu1q0ndgtjDVUT1aJIvQ">
   <meta name="csp-nonce">
 
-    <!-- Snippets Start -->
-    <script async="" src="./INTburg-FATH-INC_files/fbevents.js.download"></script><script type="text/javascript" id="ipl4t" data-controller="snippets--predefined-templates--fbq-uuid-to-sub-five-controller">
-    !function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-            n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-        ' https://connect.facebook.net/en_US/fbevents.js');
-
-    (function () {
-        try {
-            var rewriteDOM = function () {
-                Promise.resolve().then(function () {
-                    var uuidGen = function () {
-                        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-                            (
-                                c ^
-                                (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-                            ).toString(16)
-                        );
-                    };
-                    var uuid = uuidGen();
-                    var options = {
-                        external_id: uuid
-                    }
-                    if (typeof fbq != 'undefined' && fbq) {
-                        fbq('init', '568453515189119', options);
-                        fbq('track', 'PageView', options);
-                    } else {
-                        console.log('[params rewriting] no fbq pixel source to init');
-                    }
-                    var addParamsToUrl = function (url) {
-                        return params =>
-                            url + (url.indexOf("?") !== -1 ? "&" : "?") + params.substr(1);
-                    };
-
-                    var leadFormComponents = document.querySelectorAll("[data-controller=lead-forms--component]");
-                    var pageLinks = document.querySelectorAll("a");
-                    var forms = document.querySelectorAll("form");
-                    var answers = document.querySelectorAll(".button.answer[onclick]")
-                    var redirectableEl = document.querySelectorAll("[data-redirect]");
-                    var newTabRedirectableEl = document.querySelectorAll("[data-new-tab-redirect]");
-                    var linkRedirectCurrentTabUrlValue = document.querySelectorAll("[data-link-redirect-current-tab-url-value]")
-                    var linkRedirectNewTabUrlValue = document.querySelectorAll("[data-link-redirect-new-tab-url-value]")
-
-
-                    console.log('leadFormComponents', leadFormComponents)
-                    console.log('forms', forms)
-                    window.addEventListener('DOMContentLoaded', (event) => {
-                        console.log('DOM fully loaded and parsed');
-                        console.log("dom ready leadform", document.querySelectorAll("[data-controller=lead-forms--component]"))
-                    });
-                    Array.from(leadFormComponents).forEach(leadFormComponent => {
-                        var submitRedirectAttr = 'data-lead-forms--component-submit-redirect-url-value'
-                        var popupRedirectAttr = 'data-lead-forms--component-submit-popup-url-value'
-                        var redirectLink = leadFormComponent.getAttribute(submitRedirectAttr)
-                        var popupRedirect = leadFormComponent.getAttribute(popupRedirectAttr)
-                        if (redirectLink) leadFormComponent.setAttribute(submitRedirectAttr, addParamsToUrl(redirectLink)("&sub5=" + uuid));
-                        if (popupRedirect) leadFormComponent.setAttribute(popupRedirectAttr, addParamsToUrl(popupRedirect)("&sub5=" + uuid));
-                    })
-                    Array.from(forms).forEach(form => {
-                        var redirect_link = form.getAttribute('redirect_link')
-                        var new_tab_redirect_link = form.getAttribute('new_tab_redirect_link')
-                        if (redirect_link) form.setAttribute('redirect_link', addParamsToUrl(redirect_link)("&sub5=" + uuid));
-                        if (new_tab_redirect_link) form.setAttribute('new_tab_redirect_link', addParamsToUrl(new_tab_redirect_link)("&sub5=" + uuid));
-                    })
-                    Array.from(redirectableEl).forEach(form => {
-                        var redirect_link = form.getAttribute('data-redirect')
-                        if (redirect_link) form.setAttribute('data-redirect', addParamsToUrl(redirect_link)("&sub5=" + uuid));
-                    })
-                    Array.from(newTabRedirectableEl).forEach(form => {
-                        var new_tab_redirect_link = form.getAttribute('data-new-tab-redirect')
-                        if (new_tab_redirect_link) form.setAttribute('data-new-tab-redirect', addParamsToUrl(new_tab_redirect_link)("&sub5=" + uuid));
-                    })
-                    Array.from(linkRedirectCurrentTabUrlValue).forEach(form => {
-                        var redirectLink = form.getAttribute('data-link-redirect-current-tab-url-value')
-                        if (redirectLink) form.setAttribute('data-link-redirect-current-tab-url-value', addParamsToUrl(redirectLink)("&sub5=" + uuid));
-                    })
-                    Array.from(linkRedirectNewTabUrlValue).forEach(form => {
-                        var redirectLink = form.getAttribute('data-link-redirect-new-tab-url-value')
-                        if (redirectLink) form.setAttribute('data-link-redirect-new-tab-url-value', addParamsToUrl(redirectLink)("&sub5=" + uuid));
-                    })
-                    var extractUrlFromHandler = (clickHandlerStr) => {
-                        return clickHandlerStr.slice(clickHandlerStr.indexOf('https'), clickHandlerStr.lastIndexOf("'"));
-                    }
-                    var extractEverythingBeforeUrl = (clickHandlerStr) => {
-                        return clickHandlerStr.slice(0, clickHandlerStr.indexOf('https'))
-                    }
-                    var extractEverythingAfterUrl = (clickHandlerStr) => {
-                        return clickHandlerStr.slice(clickHandlerStr.lastIndexOf("'"), clickHandlerStr.length)
-                    }
-                    var formatNewHandler = (oldHandlerStr, url) => {
-                        return `${extractEverythingBeforeUrl(oldHandlerStr)}${url}${extractEverythingAfterUrl(oldHandlerStr)}`
-                    }
-                    Array.from(answers).forEach(answer => {
-                        var clickHandlerStr = answer.getAttribute("onclick")
-                        if (extractUrlFromHandler(clickHandlerStr)) {
-                            parsedUrl = addParamsToUrl(extractUrlFromHandler(clickHandlerStr))("&sub5=" + uuid)
-                            answer.setAttribute('onclick', formatNewHandler(clickHandlerStr, parsedUrl))
-                        }
-                    })
-                    Array.from(pageLinks).forEach(link => {
-                        var href = link.href;
-                        if (href) link.href = addParamsToUrl(href)("&sub5=" + uuid);
-                    });
-
-                    function getMetaValue(name) {
-                        const element = document?.head?.querySelector(`meta[name="${name}"]`)
-                        return element?.getAttribute("content")
-                    }
-
-                    function saveToLS(key, value) {
-                        return new Promise((resolve, reject) => {
-                            try {
-                                localStorage.setItem(key, JSON.stringify(value))
-                                const results = JSON.parse(localStorage.getItem(key))
-                                resolve(results)
-                            } catch (error) {
-                                reject(error)
-                            }
-                        })
-                    }
-
-                    saveToLS("fb_sub_five", uuid).then(() => {
-                        window.dispatchEvent(new Event("storage"))
-                        console.log('teststorage')
-                    })
-                });
-            }
-            if (document && document.readyState && document.readyState === "complete") {
-                rewriteDOM()
-            } else {
-                window.addEventListener("DOMContentLoaded", () => {
-                    rewriteDOM()
-                });
-            }
-        } catch (e) {
-            console.log('[params rewriting] ERROR', e)
-        }
-    }())
-</script>
-
-
-<!-- Snippet End -->
+    
 
 
     <link rel="stylesheet" href="./INTburg-FATH-INC_files/604.css" media="all" data-turbo-track="reload" defer="defer">
@@ -209,19 +54,19 @@
   <div>
     <div class="page"><div class="container pd-top"><center id="iya6"><h1 id="ifqd"><u id="ioos">Struggling Father
           </u><span draggable="true">&nbsp;</span>Stuns His Family with Vacation and New Car Thanks to Recession Relief Program That Sends $50,000 Direct Deposits to Struggling Americans
-        </h1></center><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/Screen_Shot_2023-02-17_at_23.53.33.png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ihdg"></div><img id="it61st" src="./INTburg-FATH-INC_files/seenon.png"><p id="i714i"><b>Staff Reporter Mark Johnson
+        </h1></center><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/Screen_Shot_2023-02-17_at_23.53.33.png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ihdg"></div><img id="it61st" src="./INTburg-FATH-INC_files/seenon.png"><p id="i714i"><b>Staff Reporter Mark Johnson
         </b> investigates a breakthrough financial aid program that is quickly gaining popularity among Americans both rich and poor alike. Read his shocking findings to discover how it’s possible to get a $50,000 direct deposit in your bank account in the next 48 hours.
       </p><p id="iwkjzc"><b>(American Money News)
         </b> - Since the beginning of the year, our readers have been going crazy over a new Recession Relief Program that is sweeping the nation and helping struggling families from all walks of life transform their lives in a matter of days - a program that has had such a large impact that many of the Nation’s Richest and Most Powerful want to see it banned.
       </p><p id="ibtc9i">Struggling Americans are using this Recession Relief Program to pay off their credit card debt, student loans, rent - and do things like buying their kids presents, go on vacation, and even buying new cars. And they’re doing this just 2 days after applying to this new program.
-      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/FE3F3278-576F-4B0E-91AE-159DAE9D66F2.webp" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ieqqmv"></div><p id="izntk">Brad Mensa used this Recession Relief Program to put $50,000 in his bank account in just 48 hours after his wife told him they couldn’t even afford to put gas in their car, let alone pay rent last month. Brad was concerned they would be evicted and have nowhere to go.&nbsp;
+      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/FE3F3278-576F-4B0E-91AE-159DAE9D66F2.webp" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ieqqmv"></div><p id="izntk">Brad Mensa used this Recession Relief Program to put $50,000 in his bank account in just 48 hours after his wife told him they couldn’t even afford to put gas in their car, let alone pay rent last month. Brad was concerned they would be evicted and have nowhere to go.&nbsp;
       </p><p id="isil5w">Brad, in an interview with America’s Money News finally admitted 
         <b id="iw4ph8">“I had no idea what I was going to do. We had all these bills stacking up and my paycheck didn’t even come close to paying for them. Then when I was at my most desperate, my cousin sent me this article about a program that’s sending $50,000 direct deposits to Americans who are struggling to pay their bills”
         </b></p><p id="iqbdgy">This Recession Relief Program is made possible by a recently created financial instrument called a CUP Loan. What makes the Recession Relief Program so special is that the guidelines around CUP funds and what you can spend the money on are very flexible. 
         <b>Most people spend the money on things like rent, utilities, and catch up on bills - but you can actually spend the money however you want.
         </b></p><p id="i852gi">After catching up on his bills and paying off some credit card debt, Brad surprised his family with a new car and a first class vacation to the Carribbean. We caught up with Brad after his vacation, and he says 
         <b>“everything has been smooth sailing since we applied for the Recession Relief Program. It completely changed my life!”
-        </b></p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/329336692_879827826403879_1655043047005388124_n__1_.jpeg" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ix0s7f"></div><p id="i414q9">We know that getting extra money to pay rent and catch up on bills can feel like an impossible challenge, especially during a recession. At America’s Money News, we’ve seen dozens of programs just like this that claim to work but don’t really give you that much help at the end of the day. The reason why these other programs don’t work is because there are restrictions about how you can use the money - like only being able to use it for rent, or to buy food, or gasoline. In this special report, we take an in-depth look at a new and promising program that is easy to apply for and yields real results.
+        </b></p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/329336692_879827826403879_1655043047005388124_n__1_.jpeg" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ix0s7f"></div><p id="i414q9">We know that getting extra money to pay rent and catch up on bills can feel like an impossible challenge, especially during a recession. At America’s Money News, we’ve seen dozens of programs just like this that claim to work but don’t really give you that much help at the end of the day. The reason why these other programs don’t work is because there are restrictions about how you can use the money - like only being able to use it for rent, or to buy food, or gasoline. In this special report, we take an in-depth look at a new and promising program that is easy to apply for and yields real results.
       </p><p id="i4vv5t">The product we are talking about is the Recession Relief Program, which is made possible by CUP Loan technology. You may have seen videos of people on social media talking about how they paid off their credit card debt, or bought a new car. Today, we are sharing their secret and teaching you how to get up to $50,000 in as little as 48 hours - no strings attached. In this special report, you’ll learn about success stories of the Recession Relief Program and how you can get started on applying for a direct deposit today.
       </p><div id="in32y7" class="gjs-row"><div id="ijm3g7" class="gjs-cell"><img src="./INTburg-FATH-INC_files/D7B798E0-FF5A-44A1-8C58-090B81685DB5.jpeg" alt="" data-imagelink="" data-src="assets/img/main2.png" id="i17egn"></div><div id="ixj7mf" class="gjs-cell"><div id="ipnxnk"><p id="it7kef"><strong id="i63zz"><i id="iui9qk">“As a college student I spend most of my time studying so I dont have time for a job where I can make some extra money. Everyone in my dorm was talking about this new program that was giving them tons of money to use however they wanted - so I thought - why not me? Next thing you know I had an extra $35,000 in my bank account - LIFE SAVER!!
                 </i></strong><br><br>Amy Piper, 19 years old
@@ -242,7 +87,7 @@
           <u><font color="#3498db">the official website
             </font></u> and fill out their short form. They asked me a few quick questions about how much money I needed, my employment status, and how much money I made every day. And that was it.
         </p></div><p id="ilx697">I woke up at 7:00 AM two days later and checked my bank account balance and this is what I saw:
-      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer display-none"><img src="./INTburg-FATH-INC_files/Screenshot_2023-02-17_at_11.53.27.png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ie97sh"></div><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/Screenshot_2023-02-17_at_11.53.27(1).png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="it6jk4"></div><p id="ir7p7r">And just like that - I was $50,000 richer. And even though I had talked to dozens of applicants who had gotten $50,000 in the same exact fashion - I think everybody gets that jolt of excitement when $50,000 hits their bank account.
+      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer display-none"><img src="./INTburg-FATH-INC_files/Screenshot_2023-02-17_at_11.53.27.png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ie97sh"></div><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer"><img src="./INTburg-FATH-INC_files/Screenshot_2023-02-17_at_11.53.27(1).png" alt="" data-imagelink="" data-src="assets/img/main2.png" id="it6jk4"></div><p id="ir7p7r">And just like that - I was $50,000 richer. And even though I had talked to dozens of applicants who had gotten $50,000 in the same exact fashion - I think everybody gets that jolt of excitement when $50,000 hits their bank account.
       </p><p id="i14x5p">After I received my $50,000 direct deposit, we went ahead and encouraged our employees to start applying for the program as well. By the end of the week, almost everyone in our department had gotten funds deposited into their bank accounts, with amounts ranging from $5,000 all the way up to $50,000 like I had gotten a few days earlier.
       </p><p id="i7s6wd">Most of our employees had the same idea as me and put a down payment on a new car. But some people bought fancy watches and jewelry, lots of the women in our office bought designer clothing, and one guy even bought tickets to go see the Miami Heat for the entire office!
       </p><div id="i1j22v" class="gjs-row"><div id="iq9404" class="gjs-cell"><img src="./INTburg-FATH-INC_files/31CFB147-7B83-4E34-B749-14A2D265F69D.jpeg" alt="" data-imagelink="" data-src="assets/img/main2.png" id="ifxtdx"></div><div class="gjs-cell"><div id="icakrm"><p id="iqx7np"><strong><i id="iwvp3u">“You probably know what its like to struggle to pay the bills, and then they just keep stacking up while you’re trying to pay them. This program gave me $33,000 which was enough to pay my bills, and I also put a down payment on a new car!”
@@ -255,13 +100,13 @@
               </i></strong><br><br>- Patty Douglass
           </p></div><div id="ihiw35" class="gjs-cell"><img src="./INTburg-FATH-INC_files/83BE06C6-3961-4F41-96B6-87F2183B3EFF.jpeg" alt="" data-imagelink="" data-src="assets/img/main2.png" id="iqdvug"></div></div><p id="iuiquo"><b>In conclusion
         </b>, if you need some extra money but are doubtful about whether this program really works, you need to try it for yourself. From my own experiment for American Money News, we can tell you that the results are real. We at American Money News had our doubts initially, but we were quickly turned into believers. After conducting our own studies, we are also pleased to see that thousands of Americans are really finding success with this new Relief Program.
-      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://plusamericansavings.com/lander_pages/117/?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer no-margin"><button draggable="true" data-controller="button-base" data-action="button-base#click" class="shadow rounded w-full py-4 my-2 text-2lg text-white bg-primary btn-full"><b id="ib8p2m">
+      </p><div data-gjs="redirectable_element" data-controller="link-redirect" data-link-redirect-current-tab-url-value="https://onlineconsumerblog.com/lander_pages/INTburg-FATH-INC2" data-link-redirect-new-tab-url-value="" data-action="click-&gt;link-redirect#interceptClickWithRedirect" class="cursor-pointer no-margin"><button draggable="true" data-controller="button-base" data-action="button-base#click" class="shadow rounded w-full py-4 my-2 text-2lg text-white bg-primary btn-full"><b id="ib8p2m">
           APPLY NOW &gt;&gt;
           </b></button></div><p id="i0t40w">(It costs nothing to check and there is no obligation.)
         <br></p><p id="igk80k"><i>(This is an advertorial for a Loan Product. Terms, Conditions and fees for each Loan depend on the Lender you are matched with through our program.)
-        </i></p><center><p><img src="./INTburg-FATH-INC_files/qqq.png" alt="" data-imagelink="" data-src="assets/img/debt.png" id="inmyi"></p></center></div></div><footer class="footer"><div class="container"><div class="menu"><a href="https://plusamericansavings.com/disclosure?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" target="_parent" rel="noopener noreferrer" id="io4fyj">Disclosure</a> | 
-        <a href="https://plusamericansavings.com/terms?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" target="_parent" rel="noopener noreferrer" id="if6t2">Terms &amp; Conditions</a> | 
-        <a href="https://plusamericansavings.com/privacy?sub5=5df876ef-63a5-4d13-9491-833b007b2ebc" target="_parent" rel="noopener noreferrer" id="iagkg">Privacy Policy</a></div><p id="i02w1o">The information above has been fact-checked and updated for accuracy.
+        </i></p><center><p><img src="./INTburg-FATH-INC_files/qqq.png" alt="" data-imagelink="" data-src="assets/img/debt.png" id="inmyi"></p></center></div></div><footer class="footer"><div class="container"><div class="menu"> 
+        <a href="terms" target="_parent" rel="noopener noreferrer" id="if6t2">Terms &amp; Conditions</a> | 
+        <a href="privacy" target="_parent" rel="noopener noreferrer" id="iagkg">Privacy Policy</a></div><p id="i02w1o">The information above has been fact-checked and updated for accuracy.
       </p></div><div class="bottom-container no-mg"><p id="imzyil">Certain types of debts are not eligible for enrollment. Some creditors are not eligible for enrollment because they do not negotiate with debt relief companies.
       </p><p id="imgm1s">The company and its affiliates are not lenders, creditors, or debt collectors. This is not a loan. Our representatives have helped thousands of consumers throughout their careers.
       </p></div></footer>
@@ -282,9 +127,224 @@
   </style>
 </div>
 
-<!-- Snippets Start -->
-<!-- Snippet End -->
+ <script type="text/javascript" id="ipl4t" data-controller="snippets--predefined-templates--fbq-uuid-to-sub-five-controller">
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        ' https://connect.facebook.net/en_US/fbevents.js');
+ 
+    (function () {
+        try {
+            var rewriteDOM = function () {
+                Promise.resolve().then(function () {
+                    var uuidGen = function () {
+                        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                            (
+                                c ^
+                                (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+                            ).toString(16)
+                        );
+                    };
+                    var uuid = uuidGen();
+                    var options = {
+                        external_id: uuid
+                    }
+                    if (typeof fbq != 'undefined' && fbq) {
+                        fbq('init', '568453515189119', options);
+                        fbq('track', 'PageView', options);
+                    } else {
+                        console.log('[params rewriting] no fbq pixel source to init');
+                    }
+                    var addParamsToUrl = function (url) {
+                        return params =>
+                            url + (url.indexOf("?") !== -1 ? "&" : "?") + params.substr(1);
+                    };
+ 
+                    var leadFormComponents = document.querySelectorAll("[data-controller=lead-forms--component]");
+                    var pageLinks = document.querySelectorAll("a");
+                    var forms = document.querySelectorAll("form");
+                    var answers = document.querySelectorAll(".button.answer[onclick]")
+                    var redirectableEl = document.querySelectorAll("[data-redirect]");
+                    var newTabRedirectableEl = document.querySelectorAll("[data-new-tab-redirect]");
+		    var nread =  document.querySelectorAll("[data-controller=link-redirect]");
 
+ 
+                    console.log('leadFormComponents', leadFormComponents)
+                    console.log('forms', forms)
+                    window.addEventListener('DOMContentLoaded', (event) => {
+                        console.log('DOM fully loaded and parsed');
+                        console.log("dom ready leadform", document.querySelectorAll("[data-controller=lead-forms--component]"))
+			});
+
+		
+                    Array.from(leadFormComponents).forEach(leadFormComponent => {
+                        var submitRedirectAttr = 'data-lead-forms--component-submit-redirect-url-value'
+                        var popupRedirectAttr = 'data-lead-forms--component-submit-popup-url-value'
+                        var redirectLink = leadFormComponent.getAttribute(submitRedirectAttr)
+                        var popupRedirect = leadFormComponent.getAttribute(popupRedirectAttr)
+                        if (redirectLink) leadFormComponent.setAttribute(submitRedirectAttr, addParamsToUrl(redirectLink)("&sub5=" + uuid));
+                        if (popupRedirect) leadFormComponent.setAttribute(popupRedirectAttr, addParamsToUrl(popupRedirect)("&sub5=" + uuid));
+                    })
+                    Array.from(forms).forEach(form => {
+                        var redirect_link = form.getAttribute('redirect_link')
+                        var new_tab_redirect_link = form.getAttribute('new_tab_redirect_link')
+                        if (redirect_link) form.setAttribute('redirect_link', addParamsToUrl(redirect_link)("&sub5=" + uuid));
+                        if (new_tab_redirect_link) form.setAttribute('new_tab_redirect_link', addParamsToUrl(new_tab_redirect_link)("&sub5=" + uuid));
+                    })
+                    Array.from(redirectableEl).forEach(form => {
+                        var redirect_link = form.getAttribute('data-redirect')
+                        if (redirect_link) form.setAttribute('data-redirect', addParamsToUrl(redirect_link)("&sub5=" + uuid));
+									    })
+                    Array.from(nread).forEach(form => {
+                        var redirect_link = form.getAttribute('data-link-redirect-current-tab-url-value')
+                        if (redirect_link) form.setAttribute('data-link-redirect-current-tab-url-value', addParamsToUrl(redirect_link)("&sub5=" + uuid));
+                    })									    
+                    Array.from(newTabRedirectableEl).forEach(form => {
+                        var new_tab_redirect_link = form.getAttribute('data-new-tab-redirect')
+                        if (new_tab_redirect_link) form.setAttribute('data-new-tab-redirect', addParamsToUrl(new_tab_redirect_link)("&sub5=" + uuid));
+                    })
+                    var extractUrlFromHandler = (clickHandlerStr) => {
+                        return clickHandlerStr.slice(clickHandlerStr.indexOf('https'), clickHandlerStr.lastIndexOf("'"));
+                    }
+                    var extractEverythingBeforeUrl = (clickHandlerStr) => {
+                        return clickHandlerStr.slice(0, clickHandlerStr.indexOf('https'))
+                    }
+                    var extractEverythingAfterUrl = (clickHandlerStr) => {
+                        return clickHandlerStr.slice(clickHandlerStr.lastIndexOf("'"), clickHandlerStr.length)
+                    }
+                    var formatNewHandler = (oldHandlerStr, url) => {
+                        return `${extractEverythingBeforeUrl(oldHandlerStr)}${url}${extractEverythingAfterUrl(oldHandlerStr)}`
+                    }
+                    Array.from(answers).forEach(answer => {
+                        var clickHandlerStr = answer.getAttribute("onclick")
+                        if (extractUrlFromHandler(clickHandlerStr)) {
+                            parsedUrl = addParamsToUrl(extractUrlFromHandler(clickHandlerStr))("&sub5=" + uuid)
+                            answer.setAttribute('onclick', formatNewHandler(clickHandlerStr, parsedUrl))
+                        }
+                    })
+                    Array.from(pageLinks).forEach(link => {
+                        var href = link.href;
+                        if (href) link.href = addParamsToUrl(href)("&sub5=" + uuid);
+                    });
+ 
+                    function getMetaValue(name) {
+                        const element = document?.head?.querySelector(`meta[name="${name}"]`)
+                        return element?.getAttribute("content")
+                    }
+ 
+                    function saveToLS(key, value) {
+                        return new Promise((resolve, reject) => {
+                            try {
+                                localStorage.setItem(key, JSON.stringify(value))
+                                const results = JSON.parse(localStorage.getItem(key))
+                                resolve(results)
+                            } catch (error) {
+                                reject(error)
+                            }
+                        })
+                    }
+ 
+                    saveToLS("fb_sub_five", uuid).then(() => {
+                        window.dispatchEvent(new Event("storage"))
+                        console.log('teststorage')
+                    })
+                });
+            }
+            if (document && document.readyState && document.readyState === "complete") {
+                rewriteDOM()
+            } else {
+                window.addEventListener("DOMContentLoaded", () => {
+                    rewriteDOM()
+                });
+            }
+        } catch (e) {
+            console.log('[params rewriting] ERROR', e)
+        }
+    }())
+</script>
+	
+<script type='text/javascript'>
+    Promise.resolve().then(function() {
+        var addParamsToUrl = function(url) {
+            return params =>
+                url + (url.indexOf("?") !== -1 ? "&" : "?") + params.substr(1);
+        };
+ 
+        var addCurrentParamsToUrl = function (url) {
+          const currentParams = window.location.search
+          return addParamsToUrl(url)(currentParams)
+        }
+ 
+        var leadFormComponents = document.querySelectorAll("[data-controller=lead-forms--component]");
+        var pageLinks = document.querySelectorAll("a");
+        var forms = document.querySelectorAll("form");
+        var answers = document.querySelectorAll(".button.answer[onclick]")
+        var redirectableEl = document.querySelectorAll("[data-redirect]");
+        var newTabRedirectableEl = document.querySelectorAll("[data-new-tab-redirect]");
+ 
+        var setParams = (currentUrl) => addCurrentParamsToUrl(currentUrl);
+        Array.from(pageLinks).forEach(link => {
+            var href = link.href;
+            link.href = setParams(href);
+        });
+        Array.from(leadFormComponents).forEach(leadFormComponent => {
+            var submitRedirectAttr = 'data-lead-forms--component-submit-redirect-url-value'
+            var popupRedirectAttr = 'data-lead-forms--component-submit-popup-url-value'
+            var redirectLink = leadFormComponent.getAttribute(submitRedirectAttr)
+            var popupRedirect = leadFormComponent.getAttribute(popupRedirectAttr)
+            if (redirectLink) leadFormComponent.setAttribute(submitRedirectAttr, setParams(redirectLink));
+            if (popupRedirect) leadFormComponent.setAttribute(popupRedirectAttr, setParams(popupRedirect));
+        })
+        Array.from(forms).forEach(form => {
+            var redirectLink = form.getAttribute('redirect_link')
+            var newTabRedirectLink = form.getAttribute('new_tab_redirect_link')
+            if (redirectLink) form.setAttribute('redirect_link', setParams(redirectLink));
+            if (newTabRedirectLink) form.setAttribute('new_tab_redirect_link', setParams(newTabRedirectLink));
+        })
+        Array.from(redirectableEl).forEach(form => {
+            var redirectLink = form.getAttribute('data-redirect')
+            if (redirectLink) form.setAttribute('data-redirect', setParams(redirectLink));
+        })
+        Array.from(newTabRedirectableEl).forEach(form => {
+            var newTabRedirectLink = form.getAttribute('data-new-tab-redirect')
+            if (newTabRedirectLink) form.setAttribute('data-new-tab-redirect', setParams(newTabRedirectLink));
+        })
+        var extractUrlFromHandler = (clickHandlerStr) => {
+            return clickHandlerStr.slice(clickHandlerStr.indexOf('https'), clickHandlerStr.lastIndexOf("'"));
+        }
+        var extractEverythingBeforeUrl = (clickHandlerStr) => {
+            return clickHandlerStr.slice(0, clickHandlerStr.indexOf('https'))
+        }
+        var extractEverythingAfterUrl = (clickHandlerStr) => {
+            return clickHandlerStr.slice(clickHandlerStr.lastIndexOf("'"), clickHandlerStr.length)
+        }
+        var formatNewHandler = (oldHandlerStr, url) => {
+            return `${extractEverythingBeforeUrl(oldHandlerStr)}${url}${extractEverythingAfterUrl(oldHandlerStr)}`
+        }
+        Array.from(answers).forEach(answer => {
+            var clickHandlerStr = answer.getAttribute("onclick")
+            if (extractUrlFromHandler(clickHandlerStr)) {
+                var parsedUrl = setParams(clickHandlerStr)
+                answer.setAttribute('onclick', formatNewHandler(clickHandlerStr, parsedUrl))
+            }
+        })
+ 
+    });
+</script>
 
 
 
